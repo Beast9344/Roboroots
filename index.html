@@ -1,0 +1,906 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RoboRoots | Pioneer in Automated Pre-Roll Cone Manufacturing</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+ 
+        .hero-bg-gradients::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background:
+                radial-gradient(circle at 20% 80%, #00a651 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, #0072ce 0%, transparent 50%),
+                radial-gradient(circle at 40% 40%, #ffd700 0%, transparent 50%);
+            opacity: 0.1;
+            z-index: 1;
+        }
+
+        .hero-title-gradient {
+            background: linear-gradient(45deg, #ffffff, #00a651, #0072ce);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes glow {
+            from { filter: drop-shadow(0 0 20px rgba(0, 166, 81, 0.3)); }
+            to { filter: drop-shadow(0 0 30px rgba(0, 166, 81, 0.6)); }
+        }
+
+
+        .feature-card:nth-child(1) .feature-icon { background-color: #00a651; }
+        .feature-card:nth-child(2) .feature-icon { background-color: #0072ce; }
+        .feature-card:nth-child(3) .feature-icon { background-color: #ffd700; }
+        .feature-card:nth-child(4) .feature-icon { background-color: #e4002b; }
+
+ 
+        .feature-card:nth-child(1) { border-top-color: #00a651; }
+        .feature-card:nth-child(2) { border-top-color: #0072ce; }
+        .feature-card:nth-child(3) { border-top-color: #ffd700; }
+        .feature-card:nth-child(4) { border-top-color: #e4002b; }
+
+  
+        .product-card:nth-child(1) .product-header { background-color: #00a651; }
+        .product-card:nth-child(2) .product-header { background-color: #0072ce; }
+
+        .product-card:nth-child(3) .product-header { background-color: #ffd700; color: #1f2120; }
+
+        .text-clamp-lg-3vw-2xl {
+            font-size: clamp(1.2rem, 3vw, 2rem);
+        }
+
+        .custom-cursor {
+            position: fixed;
+            width: 20px; 
+            height: 20px; 
+            background-color: #00a651; 
+            border-radius: 50%; 
+            pointer-events: none; 
+            transform: translate(-50%, -50%) scale(1); 
+            transition: transform 0.1s ease-out, opacity 0.1s ease-out, box-shadow 0.1s ease-out;
+            opacity: 0; 
+            z-index: 9999; 
+            box-shadow: 0 0 0 rgba(0, 0, 0, 0);
+        }
+
+        .custom-cursor.active {
+            opacity: 1; 
+            transform: translate(-50%, -50%) scale(1.2); 
+            box-shadow: 0 0 15px #00a651, 0 0 25px #00a651; 
+        }
+
+     
+        body {
+            cursor: none;
+        }
+
+        .info-card {
+            background-color: #1f2120;
+            border-radius: 1rem; 
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.3s ease-out, box-shadow 0.3s ease-out;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3); 
+        }
+
+        .info-card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 1rem;
+            padding: 3px;
+            background: linear-gradient(45deg, #00a651, #0072ce, #ffd700);
+            -webkit-mask:
+                linear-gradient(#fff 0 0) content-box,
+                linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            opacity: 1; 
+            transition: opacity 0.3s ease-out;
+            pointer-events: none; 
+        }
+
+        .info-card:hover::before {
+            opacity: 0.2; 
+            transform: rotate(360deg); 
+        }
+
+        .info-card-content {
+            position: relative;
+            z-index: 1; 
+            padding: 2.5rem; 
+            text-align: center;
+        }
+
+        .info-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.4); 
+        }
+        .info-card:hover::after {
+            opacity: 0.8;
+        }
+
+
+       
+        .welcome-section {
+            background-color: #1f2120; 
+            color: #ffffff; 
+            position: relative;
+            overflow: hidden;
+        }
+
+
+        .image-hover-container {
+            position: relative;
+            border-radius: 0.5rem; 
+            overflow: hidden;
+            transition: box-shadow 0.3s ease-out;
+            z-index: 1;
+        }
+
+        .image-hover-container::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: conic-gradient(from 0deg at 50% 50%, #00a651 0%, transparent 25%, transparent 50%, #0072ce 75%, transparent 100%);
+            opacity: 0;
+            transition: opacity 0.3s ease-out, transform 0.5s ease-out;
+            z-index: 0;
+            transform: rotate(0deg);
+        }
+
+        .image-hover-container:hover::before {
+            opacity: 0.3; 
+            transform: rotate(360deg); 
+        }
+
+        .image-hover-container img {
+            position: relative;
+            z-index: 1; 
+            transition: transform 0.3s ease-out;
+        }
+
+        .image-hover-container:hover img {
+            transform: scale(1.05); 
+        }
+
+
+        .detail-card {
+            background-color: #1f2120;
+            border-radius: 1rem;
+            position: relative;
+            overflow: hidden;
+            color: #ffffff;
+            transition: transform 0.3s ease-out, box-shadow 0.3s ease-out;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3); /* Initial shadow */
+        }
+
+        .detail-card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 1rem;
+            padding: 3px; 
+            background: linear-gradient(45deg, #00a651, #0072ce, #ffd700); /* Gradient colors */
+            -webkit-mask:
+                linear-gradient(#fff 0 0) content-box,
+                linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            opacity: 1; 
+            transition: opacity 0.3s ease-out;
+            pointer-events: none; 
+        }
+
+        .detail-card-header {
+            padding: 2rem;
+            text-align: center;
+            background-color: #1f2120;
+            position: relative;
+            z-index: 1;
+        }
+
+        .detail-card-icon {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            margin: 0 auto 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            transition: background-color 0.3s ease-out;
+        }
+
+        .detail-card-icon img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            border-radius: 50%;
+        }
+
+        .detail-card-title {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+        }
+
+        .detail-card-body {
+            padding: 0 2rem 2rem;
+            text-align: center;
+            opacity: 0;
+            max-height: 0; 
+            overflow: hidden;
+            transition: opacity 0.3s ease-out, max-height 0.3s ease-out; 
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .detail-card:hover .detail-card-body {
+            opacity: 1;
+            max-height: 200px; 
+        }
+
+        .detail-card:hover::after {
+            opacity: 0.8; 
+        }
+
+        .product-card {
+            background-color: #1f2120; 
+            border-radius: 1rem;
+            overflow: hidden;
+            color: #ffffff;
+            position: relative;
+            transition: transform 0.3s ease-out, box-shadow 0.3s ease-out;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3); /* Initial shadow */
+        }
+
+        .product-card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 1rem;
+            padding: 3px; 
+            background: linear-gradient(45deg, #00a651, #0072ce, #ffd700); /* Gradient colors */
+            -webkit-mask:
+                linear-gradient(#fff 0 0) content-box,
+                linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            opacity: 1; 
+            transition: opacity 0.3s ease-out;
+            pointer-events: none; 
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px) scale(1.02); 
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5); 
+        }
+
+        .product-card:hover::after {
+            opacity: 0.8; 
+        }
+
+        .product-header {
+            padding: 2rem; 
+            text-align: center;
+            color: white;
+            position: relative; 
+            z-index: 1;
+        }
+
+        .product-body {
+            padding: 1.5rem 2rem 2rem; 
+            position: relative; 
+            z-index: 1;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .product-body ul {
+            margin-top: 1rem; 
+            padding-left: 1.25rem;
+            list-style: disc;
+        }
+
+        .service-card {
+            background-color: #1f2120;
+            border-radius: 1rem;
+            position: relative;
+            overflow: hidden;
+            color: #ffffff;
+            padding: 1.5rem; 
+            text-align: center;
+            transition: transform 0.3s ease-out, box-shadow 0.3s ease-out;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .service-card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 1rem;
+            padding: 2px; 
+            background: linear-gradient(45deg, #00a651, #0072ce, #ffd700); 
+            -webkit-mask:
+                linear-gradient(#fff 0 0) content-box,
+                linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            opacity: 1;
+            transition: opacity 0.3s ease-out;
+            pointer-events: none;
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4); 
+        }
+
+        .service-card:hover::after {
+            opacity: 0.8; 
+        }
+
+
+        .pricing-banner {
+            background-color: #1f2120;
+            position: relative;
+            overflow: hidden;
+            color: white;
+            text-align: center;
+            padding: 6rem 0;
+        }
+
+        .pricing-banner img.background-pattern {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.1;
+            z-index: 0;
+        }
+
+        .pricing-banner-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .pricing-banner h2 {
+            font-size: 3.5rem;
+            font-weight: bold;
+            margin-bottom: 1.5rem;
+        }
+
+        .pricing-banner p {
+            font-size: 1.25rem;
+            opacity: 0.8;
+            margin-bottom: 2.5rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .pricing-banner .cta-button {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            background: linear-gradient(45deg, #00a651, #0072ce);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(0, 166, 81, 0.3);
+        }
+
+        .pricing-banner .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(0, 166, 81, 0.5);
+            background: linear-gradient(45deg, #0072ce, #00a651);
+        }
+    </style>
+</head>
+<body class="font-sans leading-relaxed text-[#1f2120] overflow-x-hidden">
+    <div class="custom-cursor" id="custom-cursor"></div>
+    <nav class="fixed top-0 left-0 right-0 z-50 py-4 transition-all duration-300">
+        <div class="container mx-auto px-8 flex justify-between items-center">
+            <a href="#home" class="text-white text-2xl font-bold">RoboRoots</a>
+            <ul class="hidden md:flex space-x-8 items-center nav-links">
+                <li><a href="#home" class="text-white hover:text-[#00a651] transition-colors duration-300">Home</a></li>
+                <li><a href="#products" class="text-white hover:text-[#00a651] transition-colors duration-300">Products</a></li>
+                <li><a href="#faq" class="text-white hover:text-[#00a651] transition-colors duration-300">FAQ</a></li>
+                <li><a href="#catalog" class="text-white hover:text-[#00a651] transition-colors duration-300">Catalog</a></li>
+                <li><a href="#contact-us-section" class="text-white hover:text-[#00a651] transition-colors duration-300">Contact Us</a></li>
+                <li>
+                    <a href="#build-a-cone" class="px-4 py-2 bg-[#00a651] text-white rounded-md font-bold hover:bg-[#0072ce] transition-colors duration-300">BUILD A CONE</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <section id="home" class="relative min-h-screen bg-gradient-to-br from-[#1f2120] to-[#2a2b2a] flex items-center overflow-hidden hero-bg-gradients">
+        <div class="container mx-auto px-8 relative z-10 text-white flex flex-col lg:flex-row items-center justify-between py-20">
+            <div class="hero-content lg:w-1/2 text-center lg:text-left mb-10 lg:mb-0">
+                <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold mb-4 hero-title-gradient">Offering machine rolled cones since 2018.</h1>
+                <p class="text-lg mb-12 opacity-80 max-w-xl lg:max-w-none">
+                    Roboroots is the pioneer of high speed machine automation for rolling cones. Our
+                    machines produce pre rolled cones with consistent dimensions and our natural glue is
+                    scientifically formulated for high volume pre roll processing, both of which reduce reject
+                    rates on your pre roll machine. Contact us today to experience the difference.
+                </p>
+                <div class="flex flex-col sm:flex-row justify-center lg:justify-start gap-4">
+                    <a href="#build-a-cone" class="px-6 py-3 bg-[#00a651] text-white rounded-md font-bold hover:bg-[#0072ce] transition-colors duration-300 text-lg">BUILD-A-CONE</a>
+                    <a href="#learn-more" class="px-6 py-3 border border-white text-white rounded-md font-bold hover:bg-white hover:text-[#1f2120] transition-colors duration-300 text-lg">LEARN MORE</a>
+                </div>
+            </div>
+            <div class="lg:w-1/2 flex justify-center items-center">
+      
+                <img src="assests/r2.png" alt="Machine rolling cones" class="max-w-full h-auto rounded-lg shadow-lg">
+            </div>
+        </div>
+    </section>
+
+    <section class="py-24 bg-[#1f2120]">
+        <div class="container mx-auto px-8">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="info-card">
+                    <div class="info-card-content text-white">
+                        <h3 class="text-2xl font-bold mb-6">Custom Cone Manufacturing</h3>
+                        <div class="mb-6 w-20 h-20 mx-auto">
+                            <img src="icons/a2.png" alt="Custom Cone Icon" class="w-full h-full object-contain rounded-full">
+                        </div>
+                        <p class="text-base leading-relaxed opacity-80">
+                            We manufacture pre-rolled cones with custom filters. Contact
+                            us today for a cone filter design consult and/or design
+                            template!
+                        </p>
+                    </div>
+                </div>
+     
+                <div class="info-card">
+                    <div class="info-card-content text-white">
+                        <h3 class="text-2xl font-bold mb-6">TCF (Total Chlorine Free)</h3>
+                        <div class="mb-6 w-20 h-20 mx-auto">
+                            <img src="assests/a3.png" alt="TCF Icon" class="w-full h-full object-contain rounded-full">
+                        </div>
+                        <p class="text-base leading-relaxed opacity-80">
+                            All our paper is made in Europe without any type of chlorine.
+                            TCF paper is much less harmful for both consumers and the
+                            environment.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="info-card">
+                    <div class="info-card-content text-white">
+                        <h3 class="text-2xl font-bold mb-6">Quality Assurance</h3>
+
+                        <div class="mb-6 w-20 h-20 mx-auto">
+                            <img src="icons/a1.png" alt="Quality Icon" class="w-full h-full object-contain rounded-full">
+                        </div>
+                        <p class="text-base leading-relaxed opacity-80">
+                            By employing a rigorous quality control process, Roboroots
+                            can provide its customers with consistent and safe products.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-24 welcome-section">
+        <img src="assests/r4.png" alt="Background Pattern" class="absolute inset-0 w-full h-full object-cover opacity-10 z-0">
+        <div class="container mx-auto px-8 relative z-10 flex flex-col lg:flex-row items-center justify-between">
+            <div class="lg:w-1/2 text-center lg:text-left mb-10 lg:mb-0">
+                <h2 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold mb-6 hero-title-gradient">Welcome to Roboroots: Your Premier Pre Rolled Cone Distributor</h2>
+                <p class="text-lg opacity-80 max-w-xl lg:max-w-none">
+                    Are you searching for the best pre rolled cone distributor? Look no further! At
+                    Roboroots, we specialize in providing high-quality pre rolled cones. Whether you
+                    want to buy pre rolled cones in bulk or need a reliable pre rolled cone supplier, we
+                    have you covered.
+                </p>
+            </div>
+            <div class="lg:w-1/2 flex justify-center items-center">
+
+                <div class="image-hover-container w-full max-w-md md:max-w-lg lg:max-w-full">
+                    <img src="assests/r3.png" alt="Assorted cones" class="max-w-full h-auto rounded-lg shadow-lg">
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <section id="features" class="py-24 bg-[#1f2120] text-white">
+        <div class="container mx-auto px-8">
+            <h2 class="text-center text-5xl font-bold mb-12 hero-title-gradient">Why Choose Us?</h2>
+            
+ 
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 mb-8">
+ 
+                <div class="detail-card">
+                    <div class="detail-card-header">
+                        <div class="detail-card-icon">
+                            <img src="icons/6.png" alt="Money Icon" class="w-full h-full object-cover rounded-full">
+                        </div>
+                        <h3 class="detail-card-title">Affordable Pre Rolled Cones</h3>
+                    </div>
+                    <div class="detail-card-body">
+                        <p>We offer competitive pre rolled cone wholesale prices that help you maximize your profits. Our extensive inventory includes everything from white cones to brown cones and eco-friendly hemp cones.</p>
+                    </div>
+                </div>
+
+                <div class="detail-card">
+                    <div class="detail-card-header">
+                        <div class="detail-card-icon">
+                            <img src="icons/4.png" alt="Thumbs Up Icon" class="w-full h-full object-cover rounded-full">
+                        </div>
+                        <h3 class="detail-card-title">Bulk Pre Rolled Cones</h3>
+                    </div>
+                    <div class="detail-card-body">
+                        <p>As a trusted pre rolled cone retailer, we understand the needs of your business. Our bulk pre rolled cones are perfect for enhancing your product line and meeting customer demand.</p>
+                    </div>
+                </div>
+
+                <div class="detail-card">
+                    <div class="detail-card-header">
+                        <div class="detail-card-icon">
+                            <img src="icons/2.png" alt="Custom Icon" class="w-full h-full object-cover rounded-full">
+                        </div>
+                        <h3 class="detail-card-title">Custom Solutions</h3>
+                    </div>
+                    <div class="detail-card-body">
+                        <p>Looking for something unique? We offer custom pre rolled cones tailored to your specifications. Our pre rolled cone manufacturing process ensures you receive the highest quality products that stand out in the market.</p>
+                    </div>
+                </div>
+
+                <div class="detail-card">
+                    <div class="detail-card-header">
+                        <div class="detail-card-icon">
+                            <img src="icons/3.png" alt="Globe Icon" class="w-full h-full object-cover rounded-full">
+                        </div>
+                        <h3 class="detail-card-title">Eco-Friendly Options</h3>
+                    </div>
+                    <div class="detail-card-body">
+                        <p>We are committed to sustainability. Our eco-friendly pre-rolled cones are designed for environmentally conscious consumers, making them a great choice for your business.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 max-w-5xl mx-auto">
+                <div class="detail-card">
+                    <div class="detail-card-header">
+                        <div class="detail-card-icon">
+                            <img src="icons/1.png" alt="Checkmark Icon" class="w-full h-full object-cover rounded-full">
+                        </div>
+                        <h3 class="detail-card-title">High Quality and Variety</h3>
+                    </div>
+                    <div class="detail-card-body">
+                        <p>With a focus on quality, we pride ourselves on being the best pre rolled cone supplier in the industry. Our machine rolled cones are crafted using the latest technology, ensuring consistency and durability.</p>
+                    </div>
+                </div>
+
+                <div class="detail-card">
+                    <div class="detail-card-header">
+                        <div class="detail-card-icon">
+                            <img src="icons/7.png" alt="Location Icon" class="w-full h-full object-cover rounded-full">
+                        </div>
+                        <h3 class="detail-card-title">Convenient Distribution</h3>
+                    </div>
+                    <div class="detail-card-body">
+                        <p>Searching for a pre rolled cone distributor near me? Our distribution network ensures timely delivery, keeping your inventory stocked and your customers happy.</p>
+                    </div>
+                </div>
+
+                <div class="detail-card">
+                    <div class="detail-card-header">
+                        <div class="detail-card-icon">
+                            <img src="icons/5.png" alt="Box Icon" class="w-full h-full object-cover rounded-full">
+                        </div>
+                        <h3 class="detail-card-title">Comprehensive Cone Packaging</h3>
+                    </div>
+                    <div class="detail-card-body">
+                        <p>We understand the importance of presentation. Our pre rolled cone packaging is designed to attract attention while keeping your products fresh.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+  
+    <section id="products" class="py-24 bg-gradient-to-br from-gray-50 to-gray-200">
+        <div class="container mx-auto px-8">
+            <h2 class="text-center text-5xl font-bold mb-12 hero-title-gradient">Our Product Range</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-16">
+      
+                <div class="product-card">
+                    <div class="product-header bg-[#00a651] p-8 text-center text-white">
+                        <h3 class="text-2xl font-semibold mb-2">White Cones</h3>
+                        <p class="text-lg opacity-90">Classic & Clean</p>
+                    </div>
+                    <div class="product-body">
+                        <p>Premium white pre-rolled cones made with TCF paper. Perfect for businesses seeking a clean, professional appearance.</p>
+                        <ul class="mt-4 pl-5 list-disc">
+                            <li>Consistent dimensions</li>
+                            <li>High-quality TCF paper</li>
+                            <li>Bulk wholesale pricing</li>
+                        </ul>
+                    </div>
+                </div>
+               
+                <div class="product-card">
+                    <div class="product-header bg-[#0072ce] p-8 text-center text-white">
+                        <h3 class="text-2xl font-semibold mb-2">Brown Cones</h3>
+                        <p class="text-lg opacity-90">Natural & Organic</p>
+                    </div>
+                    <div class="product-body">
+                        <p>Unbleached brown cones for customers who prefer a more natural, organic aesthetic without compromising quality.</p>
+                        <ul class="mt-4 pl-5 list-disc">
+                            <li>Unbleached natural paper</li>
+                            <li>Eco-conscious choice</li>
+                            <li>Machine-rolled precision</li>
+                        </ul>
+                    </div>
+                </div>
+             
+                <div class="product-card">
+                    <div class="product-header bg-[#ffd700] p-8 text-center text-[#1f2120]">
+                        <h3 class="text-2xl font-semibold mb-2">Hemp Cones</h3>
+                        <p class="text-lg opacity-90">Sustainable & Strong</p>
+                    </div>
+                    <div class="product-body">
+                        <p>Eco-friendly hemp cones designed for environmentally conscious consumers. Durable, sustainable, and high-performing.</p>
+                        <ul class="mt-4 pl-5 list-disc">
+                            <li>100% hemp construction</li>
+                            <li>Sustainable materials</li>
+                            <li>Enhanced durability</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+=
+    <section class="py-20 bg-[#1f2120] text-white">
+        <div class="container mx-auto px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-10 text-center">
+                <div class="stat-item">
+                    <h3 class="text-6xl font-bold text-[#00a651] mb-2">2018</h3>
+                    <p class="text-lg opacity-80">Founded & Leading Innovation</p>
+                </div>
+                <div class="stat-item">
+                    <h3 class="text-6xl font-bold text-[#00a651] mb-2">100%</h3>
+                    <p class="text-lg opacity-80">Machine Automation</p>
+                </div>
+                <div class="stat-item">
+                    <h3 class="text-6xl font-bold text-[#00a651] mb-2">TCF</h3>
+                    <p class="text-lg opacity-80">Chlorine-Free Paper</p>
+                </div>
+                <div class="stat-item">
+                    <h3 class="text-6xl font-bold text-[#00a651] mb-2">24/7</h3>
+                    <p class="text-lg opacity-80">Quality Control Process</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <section id="experience-difference" class="py-24 bg-white">
+        <div class="container mx-auto px-8">
+            <h2 class="text-4xl font-bold mb-8 text-[#1f2120]">Ready to Experience the Difference?</h2>
+            <p class="text-lg mb-8 text-gray-600">
+                Whether you need bulk pre-rolled cones, custom filter designs, or want to enhance your product line,
+                we're here to help your business thrive.
+            </p>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+    
+                <div class="service-card">
+                    <p class="text-white font-semibold">Custom cone filter design consultations</p>
+                </div>
+      
+                <div class="service-card">
+                    <p class="text-white font-semibold">Bulk wholesale pricing</p>
+                </div>
+    
+                <div class="service-card">
+                    <p class="text-white font-semibold">Design templates and specifications</p>
+                </div>
+      
+                <div class="service-card">
+                    <p class="text-white font-semibold">Quality control and consistency testing</p>
+                </div>
+   
+                <div class="service-card">
+                    <p class="text-white font-semibold">Eco-friendly packaging solutions</p>
+                </div>
+            </div>
+            <p class="text-[#00a651] font-bold text-lg mt-8">
+                Contact us today to build your own pre-rolled cone and request pricing!
+            </p>
+        </div>
+    </section>
+
+    <section class="pricing-banner bg-[#1f2120]">
+        <img src="assests/r.jpeg" alt="Background Image" class="background-pattern">
+        <div class="pricing-banner-content container mx-auto px-8">
+            <h2 class="text-white">Looking for pricing?</h2>
+            <p class="text-lg text-white opacity-80">Click the link below to build your own pre rolled cone and request pricing</p>
+            <a href="#build-a-cone" class="cta-button">BUILD-A-CONE</a>
+        </div>
+    </section>
+
+
+    <section id="contact-us-section" class="py-24 bg-[#1f2120] text-white">
+        <div class="container mx-auto px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
+
+                <div class="join-revolution-content text-center lg:text-left">
+                    <h2 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold mb-6 hero-title-gradient">Join the Pre Rolled Cone Revolution!</h2>
+                    <p class="text-lg mb-8 opacity-80">
+                        Experience the benefits of partnering with a reliable pre rolled cone
+                        distributor. Whether you're looking to buy pre rolled cones, expand
+                        your inventory, or engage in pre rolled cone sales, Roboroots is your
+                        go-to-source.
+                    </p>
+                    <a href="#contact-us-section" class="text-[#00a651] font-bold text-lg hover:underline">Contact us today</a>
+                    <div class="mt-8 flex justify-center lg:justify-start">
+                        <img src="assests/r1.png" alt="Revolutionary Machine" class="max-w-full h-auto rounded-lg shadow-lg">
+                    </div>
+                </div>
+
+
+                <div class="contact-form bg-gray-50 p-10 rounded-2xl shadow-md w-full"> 
+                    <h2 class="text-4xl font-bold mb-8 text-[#1f2120] text-center">Contact Us</h2>
+                    <form>
+                        <div class="mb-6">
+                            <input type="text" placeholder="Your Name" required class="w-full p-4 border-2 border-gray-200 rounded-lg text-base focus:outline-none focus:border-[#00a651] transition-colors duration-300">
+                        </div>
+                        <div class="mb-6">
+                            <input type="email" placeholder="Your Email" required class="w-full p-4 border-2 border-gray-200 rounded-lg text-base focus:outline-none focus:border-[#00a651] transition-colors duration-300">
+                        </div>
+                        <div class="mb-6">
+                            <input type="text" placeholder="Company Name" class="w-full p-4 border-2 border-gray-200 rounded-lg text-base focus:outline-none focus:border-[#00a651] transition-colors duration-300">
+                        </div>
+                        <div class="mb-6">
+                            <textarea rows="5" placeholder="Tell us about your needs (quantity, specifications, timeline)" class="w-full p-4 border-2 border-gray-200 rounded-lg text-base resize-none focus:outline-none focus:border-[#00a651] transition-colors duration-300"></textarea>
+                        </div>
+                        <button type="submit" class="w-full px-10 py-4 bg-gradient-to-r from-[#00a651] to-[#0072ce] text-white no-underline rounded-full font-bold text-lg transition-all duration-300 shadow-md hover:shadow-lg hover:from-[#0072ce] hover:to-[#00a651]">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <footer class="bg-[#1f2120] text-white py-16 pt-8 border-t border-gray-600 opacity-70">
+        <div class="container mx-auto px-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 mb-10">
+                <div class="footer-section">
+                    <h3 class="text-[#00a651] text-xl font-bold mb-5">RoboRoots</h3>
+                    <p>Leading the industry in high-speed machine automation for pre-rolled cone manufacturing since 2018.</p>
+                </div>
+                <div class="footer-section">
+                    <h3 class="text-[#00a651] text-xl font-bold mb-5">Products</h3>
+                    <a href="#" class="block text-white no-underline mb-2 hover:text-[#00a651] transition-colors duration-300">White Cones</a>
+                    <a href="#" class="block text-white no-underline mb-2 hover:text-[#00a651] transition-colors duration-300">Brown Cones</a>
+                    <a href="#" class="block text-white no-underline mb-2 hover:text-[#00a651] transition-colors duration-300">Hemp Cones</a>
+                    <a href="#" class="block text-white no-underline mb-2 hover:text-[#00a651] transition-colors duration-300">Custom Solutions</a>
+                </div>
+                <div class="footer-section">
+                    <h3 class="text-[#00a651] text-xl font-bold mb-5">Services</h3>
+                    <a href="#" class="block text-white no-underline mb-2 hover:text-[#00a651] transition-colors duration-300">Wholesale Pricing</a>
+                    <a href="#" class="block text-white no-underline mb-2 hover:text-[#00a651] transition-colors duration-300">Design Consultation</a>
+                    <a href="#" class="block text-white no-underline mb-2 hover:text-[#00a651] transition-colors duration-300">Quality Control</a>
+                    <a href="#" class="block text-white no-underline mb-2 hover:text-[#00a651] transition-colors duration-300">Custom Packaging</a>
+                </div>
+                <div class="footer-section">
+                    <h3 class="text-[#00a651] text-xl font-bold mb-5">Support</h3>
+                    <a href="#" class="block text-white no-underline mb-2 hover:text-[#00a651] transition-colors duration-300">FAQ</a>
+                    <a href="#" class="block text-white no-underline mb-2 hover:text-[#00a651] transition-colors duration-300">Contact Us</a>
+                    <a href="#" class="block text-white no-underline mb-2 hover:text-[#00a651] transition-colors duration-300">Terms & Conditions</a>
+                    <a href="#" class="block text-white no-underline mb-2 hover:text-[#00a651] transition-colors duration-300">Privacy Policy</a>
+                </div>
+            </div>
+            <div class="text-center pt-8 border-t border-gray-700 opacity-70">
+                <p>&copy; 2025 RoboRoots. All rights reserved. | Pioneer in Automated Pre-Roll Manufacturing</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+ 
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+
+        window.addEventListener('scroll', () => {
+            const nav = document.querySelector('nav');
+   
+            const navLinks = document.querySelectorAll('.nav-links li a:not([href="#build-a-cone"])');
+
+            if (window.scrollY > 100) {
+                nav.classList.add('bg-[#00827f]/98', 'backdrop-blur-md');
+                navLinks.forEach(link => {
+                    link.classList.remove('text-white');
+                    link.classList.add('text-[#00827f]');
+                });
+            } else {
+                nav.classList.remove('bg-[#00827f]/98', 'backdrop-blur-md');
+                navLinks.forEach(link => {
+                    link.classList.remove('text-[#00827f]');
+                    link.classList.add('text-white');
+                });
+            }
+        });
+
+
+        document.querySelector('form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const messageBox = document.createElement('div');
+            messageBox.innerHTML = `
+                <div class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+                    <div class="bg-white p-8 rounded-lg shadow-xl text-center">
+                        <p class="text-xl font-semibold mb-4">Thank you for your message! We'll get back to you soon.</p>
+                        <button class="px-6 py-2 bg-[#00a651] text-white rounded-full hover:bg-[#0072ce] transition-colors" onclick="this.parentNode.parentNode.remove()">Close</button>
+                    </div>
+                </div>
+            `;
+            document.body.appendChild(messageBox);
+
+            this.reset();
+        });
+
+        const customCursor = document.getElementById('custom-cursor');
+        let timeout;
+
+        document.addEventListener('mousemove', (e) => {
+            customCursor.style.transform = `translate(${e.clientX}px, ${e.clientY}px) scale(1)`;
+            customCursor.classList.add('active');
+            clearTimeout(timeout);
+            timeout = setTimeout(() => {
+                customCursor.classList.remove('active');
+            }, 50);
+        });
+
+        document.body.addEventListener('mouseleave', () => {
+            customCursor.classList.remove('active');
+        });
+
+        document.body.addEventListener('mouseenter', () => {
+             customCursor.style.opacity = '1';
+
+        });
+
+    </script>
+</body>
+</html>
